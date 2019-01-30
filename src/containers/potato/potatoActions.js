@@ -18,11 +18,11 @@ export const peelThePotato = (chicken) => (dispatch) => {
 // ASYNC FUNCTION WITH REQUEST TO DB
 // =================================
 export const requestToDatabase = (chicken) => (dispatch) => {
-	requester.makeRequest(chicken)
+	requester.createPotato(chicken)
 		.then(rez => {	
 			dispatch({
 				type: "REQ_TO_DATABASE",
-				payload: { ...chicken },
+				payload: { ...rez },
 			});
 		});
 }
