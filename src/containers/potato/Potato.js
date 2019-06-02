@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { peelThePotato, doSomething, requestToDatabase } from "./potatoActions.js";
-
 import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
 
 
 export class Potato extends Component {
@@ -21,9 +19,6 @@ export class Potato extends Component {
 			: { skinColor: "purple" }
 
 		peelThePotato(updatedFields)(this.props.dispatch);
-
-		let two = { fire: "water" }
-		doSomething(two);
 	}
 
 	diceThePotato = () => {
@@ -38,7 +33,7 @@ export class Potato extends Component {
 	
     return (
         <div className="Potato">
-        	>>> here's the POTATO
+        	>>> a potato view >>>
         	<button onClick={this.sliceThePotato}>SLICE IT</button>
         	<button onClick={this.diceThePotato}>DICE IT</button>
         	{Object.keys(this.props).map(prop => (
@@ -55,19 +50,13 @@ export class Potato extends Component {
 }
 
 Potato.propTypes = {
-	// field1: PropTypes.bool,
-  // field2: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   // field3: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  // onSubmitForm: PropTypes.func,
 	peelThePotato: PropTypes.func,
 	doSomething: PropTypes.func,
 	skinColor: PropTypes.string,
 	numberOfEyes: PropTypes.number,
 	starchIndex: PropTypes.number,
-	location: PropTypes.object, 
 }
-
-// const { doSomething, peelThePotato, requestToDatabase } = actions;
 
 const mapStateToProps = (state) => {
 	return {
@@ -78,23 +67,5 @@ const mapStateToProps = (state) => {
 		location: state.location,
 	}
 }
-
-// const mapDispatchToProps = (dispatch) => { // dispatch each of the potatoActions which need to update the store
-// 	return {
-// 		...potatoActions,
-// 		sliceThePotato: dispatch(sliceThePotato),
-// 		peelThePotato: updatedFields => dispatch(peelThePotato(updatedFields)),
-// 	}
-// }
-
-// export const mapDispatchToProps = dispatch => bindActionCreators( // dispatch each of the potatoActions which need to update the store
-// 	{
-// 		peelThePotato,
-// 		doSomething,
-// 	},
-// 	dispatch,
-// )
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Potato);
 
 export default connect(mapStateToProps)(Potato);

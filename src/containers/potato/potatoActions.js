@@ -14,15 +14,17 @@ export const peelThePotato = (chicken) => (dispatch) => {
 	});
 }
 
+
 // =================================
 // ASYNC FUNCTION WITH REQUEST TO DB
 // =================================
-export const requestToDatabase = (chicken) => (dispatch) => {
-	requester.createPotato(chicken)
-		.then(rez => {	
+
+export const requestToDatabase = (data) => (dispatch) => {
+	requester.createPotato(data)
+		.then(response => {	
 			dispatch({
 				type: "REQ_TO_DATABASE",
-				payload: { ...rez },
+				payload: { ...response },
 			});
 		});
 }

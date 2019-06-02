@@ -18,29 +18,36 @@ function parseJSON(response) {
 }
 
 export default {
+
 	getPotato: (id, potatumDatum) => {
-    return axios.get("/api/potatoes/" + id, potatumDatum)
+    return axios.get("/api/tasks/" + id, potatumDatum)
     	.then(checkStatus)
     	.then(parseJSON);
   },
   getPotatoes: (potatumDatum) => {
-    return axios.get("/api/potatoes/", potatumDatum)
+    return axios.get("/api/tasks/", potatumDatum)
     	.then(checkStatus)
     	.then(parseJSON);
   },
 	createPotato: (potatumDatum) => {
-    return axios.put("/api/potatoes/", potatumDatum)
+    return axios.put("/api/tasks/", potatumDatum)
     	.then(checkStatus)
-    	.then(parseJSON);
+    	.then(res => {
+        setTimeout(() => {
+          // dispatch(onSuccessFunction(parseJSON(res).data));  // <––– to dispatch an action on res success
+        }, 2500);
+      });		
 	},
   editPotato: function(id, potatumDatum) {
-    return axios.post("/api/potatoes/" + id, potatumDatum)
+    return axios.post("/api/tasks/" + id, potatumDatum)
     	.then(checkStatus)
     	.then(parseJSON);
   },
   deletePotato: (id, potatumDatum) => {
-    return axios.delete("/api/potatoes/" + id, potatumDatum)
+    return axios.delete("/api/tasks/" + id, potatumDatum)
     	.then(checkStatus)
     	.then(parseJSON);
   },
+
+
 }
